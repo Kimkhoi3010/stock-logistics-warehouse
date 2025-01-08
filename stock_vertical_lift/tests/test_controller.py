@@ -5,14 +5,14 @@ import os
 import unittest
 from unittest import mock
 
-from odoo.tests.common import HttpSavepointCase
+from odoo.tests.common import HttpCase
 from odoo.tools import mute_logger
 
 CTRL_PATH = "odoo.addons.stock_vertical_lift.controllers.main.VerticalLiftController"
 
 
 @unittest.skipIf(os.getenv("SKIP_HTTP_CASE"), "HttpCase skipped")
-class TestController(HttpSavepointCase):
+class TestController(HttpCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -21,13 +21,27 @@ class TestController(HttpSavepointCase):
         )
 
     @mute_logger("werkzeug")
-    def test_fail(self):
-        data = {"answer": "got it!", "secret": "wrong"}
-        with self.assertLogs(level="ERROR") as log_catcher:
-            response = self.url_open("/vertical-lift", data=data)
-            self.assertEqual(response.status_code, 401)
-            logger = "odoo.addons.stock_vertical_lift.controllers.main:secret"
-            self.assertEqual(log_catcher.output[0], f"ERROR:{logger} mismatch: 'wrong'")
+    def test_fail_if_secret_not_set(self):
+        with mock.patch(CTRL_PATH + "._get_env_secret") as mocked:
+            mocked.side_effect = Exception("Vertical Lift secret not set")
+            data = {"answer": "got it!", "secret": "any"}
+            with self.assertLogs(level="ERROR") as log_catcher:
+                response = self.url_open("/vertical-lift", data=data)
+                self.assertEqual(response.status_code, 500)
+                self.assertIn("Vertical Lift secret not set", log_catcher.output[0])
+
+    @mute_logger("werkzeug")
+    def test_fail_if_secret_wrong(self):
+        with mock.patch(CTRL_PATH + "._get_env_secret") as mocked:
+            mocked.return_value = "SECRET"
+            data = {"answer": "got it!", "secret": "wrong"}
+            with self.assertLogs(level="ERROR") as log_catcher:
+                response = self.url_open("/vertical-lift", data=data)
+                self.assertEqual(response.status_code, 401)
+                logger = "odoo.addons.stock_vertical_lift.controllers.main:secret"
+                self.assertEqual(
+                    log_catcher.output[0], f"ERROR:{logger} mismatch: 'wrong'"
+                )
 
     def test_record_answer(self):
         self.shuttle.command_ids.create(
@@ -41,5 +55,5 @@ class TestController(HttpSavepointCase):
             data = {"answer": "0|test|2", "secret": "SECRET"}
             response = self.url_open("/vertical-lift", data=data)
             self.assertEqual(response.status_code, 200)
-            self.shuttle.command_ids.invalidate_cache()
+            self.shuttle.command_ids.invalidate_recordset()
             self.assertEqual(self.shuttle.command_ids[0].answer, data["answer"])

@@ -50,25 +50,25 @@ General
 
 In Inventory Settings, you must have:
 
-   - Storage Locations
-   - Multi-Warehouses
-   - Multi-Step Routes
+   -  Storage Locations
+   -  Multi-Warehouses
+   -  Multi-Step Routes
 
 Locations
 ---------
 
 Additional configuration parameters are added in Locations:
 
-- Sub-locations of a location with the "Is a Vertical Lift View
-  Location" activated are considered as "Shuttles". A shuttle is a
-  vertical lift shelf.
-- Sub-locations of shuttles are considered as "Trays", which is a tier
-  of a shuttle. When a tray is created, a tray type must be selected.
-  When saved, the tray location will automatically create as many
-  sub-locations - called "Cells" - as the tray type contains.
-- The tray type of a tray can be changed as long as none of its cell
-  contains products. When changed, it archives the cells and creates new
-  ones as configured on the new tray type.
+-  Sub-locations of a location with the "Is a Vertical Lift View
+   Location" activated are considered as "Shuttles". A shuttle is a
+   vertical lift shelf.
+-  Sub-locations of shuttles are considered as "Trays", which is a tier
+   of a shuttle. When a tray is created, a tray type must be selected.
+   When saved, the tray location will automatically create as many
+   sub-locations - called "Cells" - as the tray type contains.
+-  The tray type of a tray can be changed as long as none of its cell
+   contains products. When changed, it archives the cells and creates
+   new ones as configured on the new tray type.
 
 Tray types
 ----------
@@ -111,15 +111,15 @@ The barcodes used are of the type Code 128 (with the code set B).
 Known issues / Roadmap
 ======================
 
-- Complete screen workflows (currently enough for a demo, not for
-  production)
-- Inventory: find a way to have a nice autofocus for quantity, still
-  compatible with barcode scanner (Odoo disables the autofocus when
-  using barcode, which makes sense)
-- Put-away: handle packages
-- Handle "multi-shuttle" put-away
-- Create glue module for product_expiry
-- Challenge the save + release buttons and workflow
+-  Complete screen workflows (currently enough for a demo, not for
+   production)
+-  Inventory: find a way to have a nice autofocus for quantity, still
+   compatible with barcode scanner (Odoo disables the autofocus when
+   using barcode, which makes sense)
+-  Put-away: handle packages
+-  Handle "multi-shuttle" put-away
+-  Create glue module for product_expiry
+-  Challenge the save + release buttons and workflow
 
 Bug Tracker
 ===========
@@ -142,18 +142,19 @@ Authors
 Contributors
 ------------
 
-- Guewen Baconnier <guewen.baconnier@camptocamp.com>
+-  Guewen Baconnier <guewen.baconnier@camptocamp.com>
 
 Trobz
 
-- Dung Tran <dungtd@trobz.com>
+-  Dung Tran <dungtd@trobz.com>
+-  Nhan Tran <nhant@trobz.com>
 
 Other credits
 -------------
 
 The development of this module has been financially supported by:
 
-- Camptocamp
+-  Camptocamp
 
 Maintainers
 -----------
