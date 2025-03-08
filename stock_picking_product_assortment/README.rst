@@ -29,10 +29,9 @@ Stock Picking Product Assortment
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module allows to use the product assortments related to a partner
-on stock pickings. Whith this implementation, on stock pickings, we only
-allow to select the products defined on the assortment and we don't
-allow to select products which are not defined in the whitelist on the
-assortment.
+on transfers. With this implementation, on transfers, we only allow to
+select the products defined on the assortment and we don't allow to
+select products which are not defined in the assortment.
 
 **Table of contents**
 
@@ -43,7 +42,7 @@ Configuration
 =============
 
 Follow the steps of the product_assortment module to define a whitelist
-or a blacklists or both to some partner.
+or a blacklist or both on some partners.
 
 Usage
 =====
