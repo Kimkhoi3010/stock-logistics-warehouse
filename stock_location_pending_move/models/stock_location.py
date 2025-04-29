@@ -86,7 +86,7 @@ class StockLocation(models.Model):
         context_dict = safe_eval(context)
         if "search_default_done" in context_dict:
             context_dict.pop("search_default_done")
-        context_dict["search_default_todo"] = "1"
+        context_dict["search_default_future"] = "1"
         context_dict["search_default_groupby_location_id"] = True
         action["context"] = str(context_dict)
         action.update(
