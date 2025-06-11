@@ -59,6 +59,7 @@ Authors
 -------
 
 * ForgeFlow
+* Moduon
 
 Contributors
 ------------
@@ -88,10 +89,13 @@ promote its widespread use.
 .. |maintainer-EmilioPascual| image:: https://github.com/EmilioPascual.png?size=40px
     :target: https://github.com/EmilioPascual
     :alt: EmilioPascual
+.. |maintainer-Shide| image:: https://github.com/Shide.png?size=40px
+    :target: https://github.com/Shide
+    :alt: Shide
 
 Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-yajo| |maintainer-EmilioPascual| 
+|maintainer-yajo| |maintainer-EmilioPascual| |maintainer-Shide| 
 
 This module is part of the `OCA/stock-logistics-warehouse <https://github.com/OCA/stock-logistics-warehouse/tree/18.0/stock_move_packaging_qty>`_ project on GitHub.
 
