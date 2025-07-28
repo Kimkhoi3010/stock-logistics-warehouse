@@ -1,14 +1,13 @@
 # Copyright 2020-2021 Camptocamp SA
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from odoo.tests import TransactionCase
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class StockHelperCommonCase(TransactionCase):
+class StockHelperCommonCase(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
 
         cls.wh = cls.env.ref("stock.warehouse0")
 

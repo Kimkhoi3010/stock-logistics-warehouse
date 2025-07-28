@@ -9,6 +9,13 @@ class TestStockLocationSoruceFromRoute(StockHelperCommonCase):
     def test_get_source_location_from_route(self):
         self.wh.delivery_steps = "pick_pack_ship"
         route = self.wh.delivery_route_id
+        route.rule_ids[0].write(
+            {
+                "location_dest_id": route.rule_ids[1].location_src_id.id,
+            }
+        )
+        route.rule_ids[1].write({"action": "pull"})
+        route.rule_ids[2].write({"action": "pull"})
 
         location = self.env.ref("stock.stock_location_customers")
         source_location = location._get_source_location_from_route(
